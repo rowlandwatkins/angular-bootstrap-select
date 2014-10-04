@@ -1,11 +1,11 @@
 // supply open and close without load bootstrap.js
 angular.module('angular-bootstrap-select.extra', [])
-  .directive('toggle', function () {
+  .directive('bstoggle', function () {
     return {
       restrict: 'A',
       link: function (scope, element, attrs) {
         // prevent directive from attaching itself to everything that defines a toggle attribute
-        if (!element.hasClass('selectpicker')) {
+        if (!element.hasClass('bsselectpicker')) {
           return;
         }
         
@@ -29,27 +29,27 @@ angular.module('angular-bootstrap-select.extra', [])
   });
 
 angular.module('angular-bootstrap-select', [])
-  .directive('selectpicker', ['$parse', function ($parse) {
+  .directive('bsselectpicker', ['$parse', function ($parse) {
     return {
       restrict: 'A',
       require: '?ngModel',
       priority: 10,
       compile: function (tElement, tAttrs, transclude) {
-        tElement.selectpicker($parse(tAttrs.selectpicker)());
-        tElement.selectpicker('refresh');
+        tElement.bsselectpicker($parse(tAttrs.bsselectpicker)());
+        tElement.bsselectpicker('refresh');
         return function (scope, element, attrs, ngModel) {
           if (!ngModel) return;
 
           scope.$watch(attrs.ngModel, function (newVal, oldVal) {
             scope.$evalAsync(function () {
               if (!attrs.ngOptions || /track by/.test(attrs.ngOptions)) element.val(newVal);
-              element.selectpicker('refresh');
+              element.bsselectpicker('refresh');
             });
           });
 
           ngModel.$render = function () {
             scope.$evalAsync(function () {
-              element.selectpicker('refresh');
+              element.bsselectpicker('refresh');
             });
           }
         };
