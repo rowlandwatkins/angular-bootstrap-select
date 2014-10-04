@@ -5,7 +5,7 @@ angular.module('angular-bootstrap-select.extra', [])
       restrict: 'A',
       link: function (scope, element, attrs) {
         // prevent directive from attaching itself to everything that defines a toggle attribute
-        if (!element.hasClass('bsselectpicker')) {
+        if (!element.hasClass('selectpicker')) {
           return;
         }
         
